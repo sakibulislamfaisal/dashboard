@@ -1,7 +1,7 @@
 import { ADD_PRODUCT, FETCH_PRODUCT } from "../action/productType";
 
 const initialState = {
-  product: {},
+  product: "",
   getAllProducts: [],
 };
 

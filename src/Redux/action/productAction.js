@@ -22,11 +22,30 @@ export const addProduct = (product) => {
   };
 };
 
-export const fetchProduct = (allProduct) => {
-  return {
-    type: FETCH_PRODUCT,
-    payload: allProduct,
+export const fetchProduct = (getAllProducts) => {
+  return function (dispatch) {
+    var OPTIONS = {
+      url: "http://localhost:5000/api/v1/products/getProduct",
+      method: "GET",
+      data: getAllProducts,
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+
+    axios(OPTIONS)
+      .then((res) => {
+        const allProducts = res.data.data.product;
+        // console.log(allProducts);
+        dispatch(getProduct(allProducts));
+      })
+      .catch((err) => console.log(err));
   };
 };
 
-export const getProduct = () => {};
+export const getProduct = (allProducts) => {
+  return {
+    type: FETCH_PRODUCT,
+    payload: allProducts,
+  };
+};

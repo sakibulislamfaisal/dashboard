@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { addProduct } from "../../Redux/index";
 const AddNewProducts = (props) => {
   const [product, setProduct] = useState("");
   const { register, handleSubmit, errors } = useForm();
   const [success, setSuccess] = useState(false);
+  let history = useHistory();
   const handleChange = (e) => {
     const newProduct = { ...product };
     newProduct[e.target.name] = e.target.value;
@@ -18,6 +20,7 @@ const AddNewProducts = (props) => {
     // console.log("data", product);
     addProduct(product);
     setSuccess(!success);
+    history.push("/allProduct");
   };
   if (success) {
     setTimeout(() => setSuccess(false), 3000);
@@ -102,6 +105,7 @@ const AddNewProducts = (props) => {
 const mapStateToProps = (state) => {
   return {
     product: state.product,
+    //product means reducers initialState
   };
 };
 

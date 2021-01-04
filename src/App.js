@@ -7,6 +7,7 @@ import Product from "./components/pages/Product";
 import AddNewProducts from "./components/pages/AddNewProducts";
 import { Provider } from "react-redux";
 import store from "./Redux/store";
+import GetAllProduct from "./components/pages/GetAllProduct";
 function App() {
   return (
     <>
@@ -19,6 +20,9 @@ function App() {
             </Route>
             <Route path="/products">
               <AddNewProducts />
+            </Route>
+            <Route path="/allProduct">
+              <GetAllProduct />
             </Route>
           </Switch>
         </Router>
